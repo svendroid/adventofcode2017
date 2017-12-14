@@ -60,7 +60,7 @@ fun hexHash(input: String, valueRange: Int = 256): String {
 
     val sb = StringBuilder()
     for (i in denseHash) {
-        sb.append(i.toString(16))
+        sb.append(String.format("%02x",i))
     }
 
     return sb.toString()
