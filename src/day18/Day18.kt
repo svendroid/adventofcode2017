@@ -18,7 +18,7 @@ jgz a -2"""
 //    runInstructions(exampleInput)
     //runInstructions(input)
 
-    var exampleInputPart2 = """snd 1
+    val exampleInputPart2 = """snd 1
 snd 2
 snd p
 rcv a
@@ -93,6 +93,7 @@ class Program(input: String, private var pid: Long) {
                 "mul" -> registers.set(register, (registers.get(register) ?: 0) * param)
                 "mod" -> registers.set(register, (registers.get(register) ?: 0) % param)
                 "rcv" -> {
+                    println(msgIn.toString())
                     if(msgIn.isEmpty() && otherProg.msgIn.isEmpty()){
                         println("PID:${pid} DEADLOCK")
                         return
@@ -110,7 +111,7 @@ class Program(input: String, private var pid: Long) {
                     }
                 }
                 "jgz" -> {
-                    if ((registers.get(register) ?: 0) > 0) {
+                    if (getValue(register) > 0) {
                         i += param.toInt()
 //                        println(registers.toString())
                         continue@loop
